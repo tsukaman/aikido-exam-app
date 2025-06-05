@@ -2496,7 +2496,8 @@
         "科目": ["basic_003", "basic_005", "basic_010", "basic_011", "basic_008"]
       },
       "幼年上級": {
-        "科目": ["basic_019", "basic_003", "basic_005", "basic_010", "basic_011", "waza_291"]
+        "科目": ["basic_019", "basic_003", "basic_005", "basic_010", "basic_011", "waza_291"],
+        "補足": ["片手綾持ち一ヶ条投げは回転なし。"]
       }
     },
     "少年審査": {
@@ -2521,54 +2522,145 @@
       "初段": {
         "科目": ["basic_001", "basic_002", "basic_006", "basic_007", "basic_008", "basic_009", "basic_013", "basic_014", "waza_016", "waza_080", "指定技", "指定技", "正面打ち自由技"],
         "指定技": ["waza_001", "waza_002", "waza_005", "waza_006", "waza_017", "waza_018", "waza_021", "waza_022", "waza_055", "waza_056", "waza_087", "waza_088", "waza_091", "waza_092", "waza_123", "waza_124", "waza_151", "waza_152", "waza_189", "waza_190", "waza_221", "waza_222", "waza_277", "waza_278", "waza_255", "waza_256"],
-        "補足": ["少年部の基本動作はすべて単独動作"]
+        "補足": ["少年部の基本動作はすべて単独動作。"]
       }
     },
     "一般初級審査": {
       "9-10級": {
-        "科目": ["basic_001", "basic_002", "basic_003", "basic_005", "basic_006", "basic_007", "basic_008", "basic_009", "basic_013", "basic_014"]
+        "科目": ["basic_001", "basic_002", "basic_003", "basic_005", "basic_006", "basic_007", "basic_008", "basic_009", "basic_013", "basic_014"],
+        "補足": ["すべて単独動作。基本動作は右のみ。"]
       },
       "6-8級": {
-        "科目": ["basic_001", "basic_002", "basic_003", "basic_005", "basic_006", "basic_007", "basic_008", "basic_009", "basic_013", "basic_014", "waza_001", "waza_002", "waza_017", "waza_018"]
+        "科目": ["basic_001", "basic_002", "basic_003", "basic_005", "basic_006", "basic_007", "basic_008", "basic_009", "basic_013", "basic_014", "waza_001", "waza_002", "waza_017", "waza_018"],
+        "補足": ["基本動作は単独動作、右のみ。技法は左右。"]
       },
       "5級": {
-        "科目": ["basic_001", "basic_002", "basic_006", "basic_007", "basic_008", "basic_009", "waza_055", "waza_056", "waza_087", "waza_088", "waza_151", "waza_190", "basic_013", "basic_014"]
+        "科目": ["basic_001", "basic_002", "basic_006", "basic_007", "basic_008", "basic_009", "waza_055", "waza_056", "waza_087", "waza_088", "waza_151", "waza_190", "basic_013", "basic_014"],
+        "補足": ["基本動作は相対動作。技法は左右。"]
       },
       "4級": {
         "科目": ["basic_001", "basic_002", "basic_006", "basic_007", "basic_008", "basic_009", "waza_123", "waza_222", "waza_256", "waza_277", "waza_286", "指定技", "basic_013", "basic_014"],
-        "指定技": ["waza_001", "waza_002", "waza_017", "waza_018", "waza_055", "waza_056", "waza_087", "waza_088", "waza_151", "waza_190"]
+        "指定技": ["waza_001", "waza_002", "waza_017", "waza_018", "waza_055", "waza_056", "waza_087", "waza_088", "waza_151", "waza_190"],
+        "補足": ["基本動作は相対動作。技法は左右。"]
       }
     },
     "昇級審査": {
       "3級": {
-        "科目": ["basic_001", "basic_002", "basic_003", "basic_004", "basic_005", "basic_006", "basic_007", "basic_008", "basic_009", "waza_046", "waza_189", "waza_224", "指定技一本目", "指定技二本目", "指定技三本目", "基本動作（一）", "基本動作（二）"],
-        "指定技": "三級は立技のみ"
+        "科目": ["basic_001", "basic_002", "basic_003", "basic_004", "basic_005", "basic_006", "basic_007", "basic_008", "basic_009", "waza_046", "waza_189", "waza_224"],
+        "指定技": ["waza_001", "waza_002", "waza_005", "waza_006", "waza_009", "waza_010", "waza_017", "waza_018", "waza_021", "waza_022", "waza_037", "waza_038", "waza_045", "waza_046", "waza_055", "waza_056", "waza_071", "waza_072", "waza_079", "waza_080", "waza_087", "waza_088", "waza_091", "waza_092", "waza_115", "waza_116", "waza_123", "waza_124", "waza_127", "waza_128", "waza_151", "waza_152", "waza_163", "waza_164", "waza_171", "waza_172", "waza_175", "waza_176", "waza_185", "waza_186", "waza_189", "waza_190", "waza_193", "waza_194", "waza_201", "waza_202", "waza_205", "waza_206", "waza_221", "waza_222", "waza_225", "waza_226", "waza_255", "waza_256", "waza_259", "waza_260", "waza_277", "waza_286", "waza_287"],
+        "補足": ["指定技は立ち技のみ。ただし、座り技両手持ち呼吸法（一）（二）は含む。"]
       },
       "2級": {
-        "科目": ["basic_001", "basic_002", "basic_006", "basic_007", "basic_008", "basic_009", "waza_046", "waza_189", "waza_224", "指定技一本目", "指定技二本目", "指定技三本目", "指定技四本目", "basic_013", "basic_014", "正面打ち自由技（一級受験者のみ）"],
-        "指定技": "二級は座技を含む全ての指定技"
+        "科目": ["basic_001", "basic_002", "basic_006", "basic_007", "basic_008", "basic_009", "waza_046", "waza_189", "waza_224", "basic_013", "basic_014"],
+        "指定技": ["waza_001", "waza_002", "waza_003", "waza_004", "waza_005", "waza_006", "waza_007", "waza_008", "waza_009", "waza_010", "waza_011", "waza_012", "waza_017", "waza_018", "waza_019", "waza_020", "waza_021", "waza_022", "waza_023", "waza_024", "waza_037", "waza_038", "waza_039", "waza_040", "waza_045", "waza_046", "waza_055", "waza_056", "waza_057", "waza_058", "waza_071", "waza_072", "waza_073", "waza_074", "waza_079", "waza_080", "waza_081", "waza_082", "waza_087", "waza_088", "waza_089", "waza_090", "waza_091", "waza_092", "waza_093", "waza_094", "waza_115", "waza_116", "waza_123", "waza_124", "waza_125", "waza_126", "waza_127", "waza_128", "waza_129", "waza_130", "waza_151", "waza_152", "waza_153", "waza_154", "waza_163", "waza_164", "waza_165", "waza_166", "waza_171", "waza_172", "waza_173", "waza_174", "waza_175", "waza_176", "waza_177", "waza_178", "waza_185", "waza_186", "waza_187", "waza_188", "waza_189", "waza_190", "waza_191", "waza_192", "waza_193", "waza_194", "waza_195", "waza_196", "waza_201", "waza_202", "waza_203", "waza_204", "waza_205", "waza_206", "waza_207", "waza_208", "waza_221", "waza_222", "waza_223", "waza_224", "waza_225", "waza_226", "waza_227", "waza_228", "waza_255", "waza_256", "waza_257", "waza_258", "waza_259", "waza_260", "waza_261", "waza_262", "waza_277", "waza_279", "waza_286", "waza_287"],
+        "補足": ["二級は座技を含む全ての指定技が出題範囲。"]
       },
       "1級": {
-        "科目": ["basic_001", "basic_002", "basic_006", "basic_007", "basic_008", "basic_009", "waza_046", "waza_189", "waza_224", "指定技一本目", "指定技二本目", "指定技三本目", "指定技四本目", "basic_013", "basic_014", "正面打ち自由技（一級受験者のみ）"],
-        "指定技": "一級・二級は座技を含む全ての指定技（審査科目は同じ）"
+        "科目": ["basic_001", "basic_002", "basic_006", "basic_007", "basic_008", "basic_009", "waza_046", "waza_189", "waza_224", "basic_013", "basic_014"],
+        "指定技": ["waza_001", "waza_002", "waza_003", "waza_004", "waza_005", "waza_006", "waza_007", "waza_008", "waza_009", "waza_010", "waza_011", "waza_012", "waza_017", "waza_018", "waza_019", "waza_020", "waza_021", "waza_022", "waza_023", "waza_024", "waza_037", "waza_038", "waza_039", "waza_040", "waza_045", "waza_046", "waza_055", "waza_056", "waza_057", "waza_058", "waza_071", "waza_072", "waza_073", "waza_074", "waza_079", "waza_080", "waza_081", "waza_082", "waza_087", "waza_088", "waza_089", "waza_090", "waza_091", "waza_092", "waza_093", "waza_094", "waza_115", "waza_116", "waza_123", "waza_124", "waza_125", "waza_126", "waza_127", "waza_128", "waza_129", "waza_130", "waza_151", "waza_152", "waza_153", "waza_154", "waza_163", "waza_164", "waza_165", "waza_166", "waza_171", "waza_172", "waza_173", "waza_174", "waza_175", "waza_176", "waza_177", "waza_178", "waza_185", "waza_186", "waza_187", "waza_188", "waza_189", "waza_190", "waza_191", "waza_192", "waza_193", "waza_194", "waza_195", "waza_196", "waza_201", "waza_202", "waza_203", "waza_204", "waza_205", "waza_206", "waza_207", "waza_208", "waza_221", "waza_222", "waza_223", "waza_224", "waza_225", "waza_226", "waza_227", "waza_228", "waza_255", "waza_256", "waza_257", "waza_258", "waza_259", "waza_260", "waza_261", "waza_262", "waza_277", "waza_279", "waza_286", "waza_287"],
+        "補足": ["一級は座技を含む全ての指定技が出題範囲。"]
       }
     },
     "昇段審査": {
       "初段": {
-        "科目": ["basic_001", "basic_002", "basic_008", "basic_009", "waza_026", "waza_288", "waza_255", "指定技一本目", "指定技二本目", "指定技三本目", "指定技四本目", "basic_013", "basic_014", "指定自由技", "指定自由技"],
+        "科目": ["basic_001", "basic_002", "basic_008", "basic_009", "waza_026", "waza_288", "waza_255", "basic_013", "basic_014"],
+        "指定技": ["waza_001", "waza_002", "waza_003", "waza_004", "waza_005", "waza_006", "waza_007", "waza_008", "waza_009", "waza_010", "waza_011", "waza_012", "waza_014", "waza_015", "waza_016", "waza_017", "waza_018", "waza_019", "waza_020", "waza_021", "waza_022", "waza_023", "waza_024", "waza_025", "waza_026", "waza_027", "waza_028", "waza_037", "waza_038", "waza_039", "waza_040", "waza_045", "waza_046", "waza_047", "waza_048", "waza_055", "waza_056", "waza_057", "waza_058", "waza_071", "waza_072", "waza_073", "waza_074", "waza_079", "waza_080", "waza_081", "waza_082", "waza_083", "waza_084", "waza_085", "waza_086", "waza_087", "waza_088", "waza_089", "waza_090", "waza_091", "waza_092", "waza_093", "waza_094", "waza_095", "waza_096", "waza_097", "waza_098", "waza_107", "waza_108", "waza_109", "waza_110", "waza_115", "waza_116", "waza_117", "waza_118", "waza_123", "waza_124", "waza_125", "waza_126", "waza_127", "waza_128", "waza_129", "waza_130", "waza_131", "waza_132", "waza_133", "waza_134", "waza_151", "waza_152", "waza_153", "waza_154", "waza_163", "waza_164", "waza_165", "waza_166", "waza_185", "waza_186", "waza_187", "waza_188", "waza_189", "waza_190", "waza_191", "waza_192", "waza_201", "waza_202", "waza_203", "waza_204", "waza_205", "waza_206", "waza_207", "waza_208", "waza_221", "waza_222", "waza_223", "waza_224", "waza_225", "waza_226", "waza_227", "waza_228", "waza_245", "waza_246", "waza_247", "waza_248", "waza_233", "waza_234", "waza_235", "waza_236", "waza_255", "waza_256", "waza_257", "waza_258", "waza_259", "waza_260", "waza_261", "waza_262", "waza_263", "waza_264", "waza_265", "waza_266", "waza_277", "waza_278", "waza_279", "waza_280", "waza_286", "waza_287"],
         "指定自由技": ["正面打ち自由技", "横面打ち自由技", "片手持ち自由技", "両手持ち自由技", "正面突き自由技"]
-      },
-      "弐段": {
-        "科目": ["basic_001", "basic_002", "basic_008", "basic_009", "waza_026", "waza_288", "waza_255", "指定技一本目", "指定技二本目", "指定技三本目", "指定技四本目", "basic_013", "指定自由技一本目", "指定自由技二本目", "二人取り自由技（短刀、徒手）"],
-        "指定自由技": ["正面打ち自由技", "横面打ち自由技", "片手持ち自由技", "両手持ち自由技", "正面突き自由技", "正面横面打ち自由技"]
-      },
-      "参段": {
-        "科目": ["basic_001", "basic_002", "basic_008", "basic_009", "waza_026", "waza_288", "waza_255", "指定技一本目", "指定技二本目", "指定技三本目", "指定技四本目", "basic_013", "指定自由技一本目", "指定自由技一本目", "指定自由技二本目", "三人取り自由技（木剣、短刀、徒手）"],
-        "指定自由技": ["正面打ち自由技", "横面打ち自由技", "片手持ち自由技", "両手持ち自由技", "正面突き自由技", "肩持ち自由技", "後技両手持ち自由技", "後技両肘持ち自由技", "後技両肩持ち自由技", "短刀取り自由技", "剣取り自由技"]
       }
     },
     "有段審査": {
-      "指定技": {
+      "弐段": {
+        "科目": ["basic_001", "basic_002", "basic_008", "basic_009", "waza_026", "waza_288", "waza_255", "basic_013"],
+        "指定技": ["waza_001", "waza_002", "waza_003", "waza_004", "waza_005", "waza_006", "waza_007", "waza_008", "waza_009", "waza_010", "waza_011", "waza_012", "waza_013", "waza_014", "waza_015", "waza_016", "waza_017", "waza_018", "waza_019", "waza_020", "waza_021", "waza_022", "waza_023", "waza_024", "waza_025", "waza_026", "waza_027", "waza_028", "waza_029", "waza_030", "waza_031", "waza_032", "waza_033", "waza_034", "waza_035", "waza_036", "waza_037", "waza_038", "waza_039", "waza_040", "waza_041", "waza_042", "waza_043", "waza_044", "waza_045", "waza_046", "waza_047", "waza_048", "waza_049", "waza_050", "waza_051", "waza_052", "waza_053", "waza_054", "waza_055", "waza_056", "waza_057", "waza_058", "waza_059", "waza_060", "waza_061", "waza_062", "waza_063", "waza_064", "waza_065", "waza_066", "waza_067", "waza_068", "waza_069", "waza_070", "waza_071", "waza_072", "waza_073", "waza_074", "waza_075", "waza_076", "waza_077", "waza_078", "waza_079", "waza_080", "waza_081", "waza_082", "waza_083", "waza_084", "waza_085", "waza_086", "waza_087", "waza_088", "waza_089", "waza_090", "waza_091", "waza_092", "waza_093", "waza_094", "waza_095", "waza_096", "waza_097", "waza_098", "waza_099", "waza_100", "waza_101", "waza_102", "waza_103", "waza_104", "waza_105", "waza_106", "waza_107", "waza_108", "waza_109", "waza_110", "waza_111", "waza_112", "waza_113", "waza_114", "waza_115", "waza_116", "waza_117", "waza_118", "waza_119", "waza_120", "waza_121", "waza_122", "waza_123", "waza_124", "waza_125", "waza_126", "waza_127", "waza_128", "waza_129", "waza_130", "waza_131", "waza_132", "waza_133", "waza_134", "waza_135", "waza_136", "waza_137", "waza_138", "waza_139", "waza_140", "waza_141", "waza_142", "waza_143", "waza_144", "waza_145", "waza_146", "waza_147", "waza_148", "waza_149", "waza_150", "waza_151", "waza_152", "waza_153", "waza_154", "waza_155", "waza_156", "waza_157", "waza_158", "waza_159", "waza_160", "waza_161", "waza_162", "waza_163", "waza_164", "waza_165", "waza_166", "waza_167", "waza_168", "waza_169", "waza_170", "waza_171", "waza_172", "waza_173", "waza_174", "waza_175", "waza_176", "waza_177", "waza_178", "waza_179", "waza_180", "waza_181", "waza_182", "waza_183", "waza_185", "waza_186", "waza_187", "waza_188", "waza_189", "waza_190", "waza_191", "waza_192", "waza_193", "waza_194", "waza_195", "waza_196", "waza_197", "waza_198", "waza_199", "waza_200", "waza_201", "waza_202", "waza_203", "waza_204", "waza_205", "waza_206", "waza_207", "waza_208", "waza_209", "waza_210", "waza_211", "waza_212", "waza_213", "waza_214", "waza_215", "waza_216", "waza_217", "waza_218", "waza_219", "waza_220", "waza_221", "waza_222", "waza_223", "waza_224", "waza_225", "waza_226", "waza_227", "waza_228", "waza_229", "waza_230", "waza_231", "waza_232", "waza_233", "waza_234", "waza_235", "waza_236", "waza_237", "waza_238", "waza_239", "waza_240", "waza_241", "waza_242", "waza_243", "waza_244", "waza_245", "waza_246", "waza_247", "waza_248", "waza_249", "waza_250", "waza_251", "waza_252", "waza_253", "waza_254", "waza_255", "waza_256", "waza_257", "waza_258", "waza_259", "waza_260", "waza_261", "waza_262", "waza_263", "waza_264", "waza_265", "waza_266", "waza_267", "waza_268", "waza_269", "waza_270", "waza_271", "waza_272", "waza_273", "waza_274", "waza_275", "waza_276", "waza_277", "waza_278", "waza_279", "waza_280", "waza_281", "waza_282", "waza_283", "waza_284", "waza_285", "waza_286", "waza_287"],
+        "指定自由技": ["正面打ち自由技", "横面打ち自由技", "片手持ち自由技", "両手持ち自由技", "正面突き自由技", "正面横面打ち自由技"]
+      },
+      "参段以上": {
+        "科目": ["basic_001", "basic_002", "basic_008", "basic_009", "waza_026", "waza_288", "waza_255", "basic_013"],
+        "指定技": ["waza_001", "waza_002", "waza_003", "waza_004", "waza_005", "waza_006", "waza_007", "waza_008", "waza_009", "waza_010", "waza_011", "waza_012", "waza_013", "waza_014", "waza_015", "waza_016", "waza_017", "waza_018", "waza_019", "waza_020", "waza_021", "waza_022", "waza_023", "waza_024", "waza_025", "waza_026", "waza_027", "waza_028", "waza_029", "waza_030", "waza_031", "waza_032", "waza_033", "waza_034", "waza_035", "waza_036", "waza_037", "waza_038", "waza_039", "waza_040", "waza_041", "waza_042", "waza_043", "waza_044", "waza_045", "waza_046", "waza_047", "waza_048", "waza_049", "waza_050", "waza_051", "waza_052", "waza_053", "waza_054", "waza_055", "waza_056", "waza_057", "waza_058", "waza_059", "waza_060", "waza_061", "waza_062", "waza_063", "waza_064", "waza_065", "waza_066", "waza_067", "waza_068", "waza_069", "waza_070", "waza_071", "waza_072", "waza_073", "waza_074", "waza_075", "waza_076", "waza_077", "waza_078", "waza_079", "waza_080", "waza_081", "waza_082", "waza_083", "waza_084", "waza_085", "waza_086", "waza_087", "waza_088", "waza_089", "waza_090", "waza_091", "waza_092", "waza_093", "waza_094", "waza_095", "waza_096", "waza_097", "waza_098", "waza_099", "waza_100", "waza_101", "waza_102", "waza_103", "waza_104", "waza_105", "waza_106", "waza_107", "waza_108", "waza_109", "waza_110", "waza_111", "waza_112", "waza_113", "waza_114", "waza_115", "waza_116", "waza_117", "waza_118", "waza_119", "waza_120", "waza_121", "waza_122", "waza_123", "waza_124", "waza_125", "waza_126", "waza_127", "waza_128", "waza_129", "waza_130", "waza_131", "waza_132", "waza_133", "waza_134", "waza_135", "waza_136", "waza_137", "waza_138", "waza_139", "waza_140", "waza_141", "waza_142", "waza_143", "waza_144", "waza_145", "waza_146", "waza_147", "waza_148", "waza_149", "waza_150", "waza_151", "waza_152", "waza_153", "waza_154", "waza_155", "waza_156", "waza_157", "waza_158", "waza_159", "waza_160", "waza_161", "waza_162", "waza_163", "waza_164", "waza_165", "waza_166", "waza_167", "waza_168", "waza_169", "waza_170", "waza_171", "waza_172", "waza_173", "waza_174", "waza_175", "waza_176", "waza_177", "waza_178", "waza_179", "waza_180", "waza_181", "waza_182", "waza_183", "waza_185", "waza_186", "waza_187", "waza_188", "waza_189", "waza_190", "waza_191", "waza_192", "waza_193", "waza_194", "waza_195", "waza_196", "waza_197", "waza_198", "waza_199", "waza_200", "waza_201", "waza_202", "waza_203", "waza_204", "waza_205", "waza_206", "waza_207", "waza_208", "waza_209", "waza_210", "waza_211", "waza_212", "waza_213", "waza_214", "waza_215", "waza_216", "waza_217", "waza_218", "waza_219", "waza_220", "waza_221", "waza_222", "waza_223", "waza_224", "waza_225", "waza_226", "waza_227", "waza_228", "waza_229", "waza_230", "waza_231", "waza_232", "waza_233", "waza_234", "waza_235", "waza_236", "waza_237", "waza_238", "waza_239", "waza_240", "waza_241", "waza_242", "waza_243", "waza_244", "waza_245", "waza_246", "waza_247", "waza_248", "waza_249", "waza_250", "waza_251", "waza_252", "waza_253", "waza_254", "waza_255", "waza_256", "waza_257", "waza_258", "waza_259", "waza_260", "waza_261", "waza_262", "waza_263", "waza_264", "waza_265", "waza_266", "waza_267", "waza_268", "waza_269", "waza_270", "waza_271", "waza_272", "waza_273", "waza_274", "waza_275", "waza_276", "waza_277", "waza_278", "waza_279", "waza_280", "waza_281", "waza_282", "waza_283", "waza_284", "waza_285", "waza_286", "waza_287", "waza_288", "waza_289", "waza_290"],
+        "指定自由技": ["正面打ち自由技", "横面打ち自由技", "片手持ち自由技", "両手持ち自由技", "正面突き自由技", "肩持ち自由技", "後技両手持ち自由技", "後技両肘持ち自由技", "後技両肩持ち自由技", "短刀取り自由技", "剣取り自由技"]
+      }
+    },
+    "指定技一覧": {
+      "昇級": {
+        "説明": "※印は座り技も含む",
+        "技リスト": [
+          "片手持ち四方投げ（一）（二）",
+          "両手持ち四方投げ（一）（二）",
+          "横面打ち四方投げ（一）（二）",
+          "※正面打ち一ケ条抑え（一）（二）",
+          "※横面打ち一ケ条抑え（一）（二）",
+          "※肩持ち一ケ条抑え（一）（二）",
+          "後技両手持ち一ケ条抑え（一）（二）",
+          "※片手持ち二ケ条抑え（一）（二）",
+          "※肩持ち二ケ条抑え（一）（二）",
+          "※正面打ち二ケ条抑え（一）（二）",
+          "※正面打ち三ケ条抑え（一）（二）",
+          "※横面打ち三ケ条抑え（一）（二）",
+          "後技両手持ち三ケ条抑え（一）（二）",
+          "※正面打ち四ケ条抑え（一）（二）",
+          "※横面打ち四ケ条抑え（一）（二）",
+          "※片手持ち側面入身投げ（一）（二）",
+          "※肩持ち側面入身投げ（一）（二）",
+          "※正面打ち側面入身投げ（一）（二）",
+          "※横面打ち側面入身投げ（一）（二）",
+          "※正面打ち正面入身投げ（一）（二）",
+          "※横面打ち正面入身投げ（一）（二）",
+          "※片手持ち正面入身投げ（一）（二）",
+          "※正面打ち肘締め（一）（二）",
+          "※横面打ち肘締め（一）（二）",
+          "※肩持ち肘締め（一）（二）",
+          "※胸持ち肘締め（一）（二）",
+          "※正面打ち小手返し（一）（二）",
+          "※横面打ち小手返し（一）（二）",
+          "※両手持ち天地投げ（一）",
+          "座り技両手持ち呼吸法（一）（二）"
+        ]
+      },
+      "昇段": {
+        "説明": "※印は座り技も含む",
+        "技リスト": [
+          "片手持ち四方投げ（一）（二）",
+          "両手持ち四方投げ（一）（二）",
+          "横面打ち四方投げ（一）（二）",
+          "半身半立ち片手持ち四方投げ（一）（二）",
+          "半身半立ち両手持ち四方投げ",
+          "※正面打ち一ケ条抑え（一）（二）",
+          "※横面打ち一ケ条抑え（一）（二）",
+          "※片手持ち一ケ条抑え（一）（二）",
+          "※肩持ち一ケ条抑え（一）（二）",
+          "後技両手持ち一ケ条抑え（一）（二）",
+          "後技片手襟持ち一ケ条抑え（一）（二）",
+          "※片手持ち二ケ条抑え（一）（二）",
+          "※肩持ち二ケ条抑え（一）（二）",
+          "※正面打ち二ケ条抑え（一）（二）",
+          "※横面打ち二ケ条抑え（一）（二）",
+          "※正面打ち三ケ条抑え（一）（二）",
+          "※横面打ち三ケ条抑え（一）（二）",
+          "※片手持ち三ケ条抑え（一）（二）",
+          "※肩持ち三ケ条抑え（一）（二）",
+          "後技両手持ち三ケ条抑え（一）（二）",
+          "後技片手襟持ち三ケ条抑え（一）（二）",
+          "※正面打ち四ケ条抑え（一）（二）",
+          "※横面打ち四ケ条抑え（一）（二）",
+          "※片手持ち四ケ条抑え（一）（二）",
+          "※片手持ち側面入身投げ（一）（二）",
+          "※肩持ち側面入身投げ（一）（二）",
+          "※正面打ち正面入身投げ（一）（二）",
+          "※横面打ち正面入身投げ（一）（二）",
+          "※正面打ち肘締め（一）（二）",
+          "※横面打ち肘締め（一）（二）",
+          "※肩持ち肘締め（一）（二）",
+          "※胸持ち肘締め（一）（二）",
+          "※片手持ち肘当て呼吸投げ（一）（二）",
+          "※正面打ち肘当て呼吸投げ（一）（二）",
+          "※正面打ち小手返し（一）（二）",
+          "※横面打ち小手返し（一）（二）",
+          "※正面突き小手返し（一）（二）",
+          "※両手持ち天地投げ（一）（二）",
+          "座り技両手持ち呼吸法（一）（二）"
+        ]
+      },
+      "有段": {
         "説明": "※印は座り技も含む",
         "技リスト": [
           "片手持ち四方投げ（一）（二）",
@@ -2660,7 +2752,7 @@
         ]
       }
     },
-    "自由技": {
+    "自由技一覧": {
       "攻撃種類": [
         "正面打ち自由技",
         "横面打ち自由技",
