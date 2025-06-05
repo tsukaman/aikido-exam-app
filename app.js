@@ -40,7 +40,13 @@ class AikidoExamApp {
 
     async loadData() {
         try {
-            const response = await fetch('./data/aikido-ryu-exam-db.json');
+            // GitHub Pagesとローカル環境の両方で動作するようにパスを調整
+            const basePath = window.location.pathname.includes('/aikido-exam-app/') 
+                ? '/aikido-exam-app' 
+                : '';
+            const dataPath = basePath ? `${basePath}/data/aikido-ryu-exam-db.json` : './data/aikido-ryu-exam-db.json';
+            
+            const response = await fetch(dataPath);
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
