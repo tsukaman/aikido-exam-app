@@ -24,7 +24,7 @@ class AikidoExamApp {
             domain: 'dev-qsdnauzbgus8v8wr.jp.auth0.com', // 例: 'dev-example.us.auth0.com'
             clientId: 'yB2AU17MwX7gm7mBr62yUskD3eZvPYgP',
             authorizationParams: {
-                redirect_uri: window.location.origin
+                redirect_uri: window.location.origin + window.location.pathname
             }
         };
         
