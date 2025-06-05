@@ -35,3 +35,6 @@ pids
 # Temporary folders
 tmp/
 temp/
+
+# Configuration files with sensitive data
+config.js
