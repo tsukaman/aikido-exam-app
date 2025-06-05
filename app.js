@@ -140,10 +140,27 @@ class AikidoExamApp {
             const isAuthenticated = await this.auth0.isAuthenticated();
             if (isAuthenticated) {
                 const user = await this.auth0.getUser();
+                
+                // ユーザーがブロックされていないかチェック
+                if (user.blocked) {
+                    await this.logout();
+                    this.showError('アカウントが無効化されています。管理者にお問い合わせください。');
+                    return false;
+                }
+                
+                // カスタム属性での承認状態チェック
+                const userApproved = user['https://aikido-app.com/approved'] || false;
+                if (!userApproved) {
+                    await this.logout();
+                    this.showApprovalPendingMessage();
+                    return false;
+                }
+                
                 this.userInfo = {
                     email: user.email,
                     name: user.name || user.nickname,
-                    picture: user.picture
+                    picture: user.picture,
+                    blocked: user.blocked || false
                 };
                 this.isAuthenticated = true;
                 this.updateAuthUI();
@@ -248,6 +265,64 @@ class AikidoExamApp {
         const loginMessage = document.getElementById('login-message');
         if (loginMessage) {
             loginMessage.remove();
+        }
+    }
+
+    showApprovalPendingMessage() {
+        // メインコンテンツを非表示
+        document.querySelector('main').style.display = 'none';
+        
+        // ログイン関連UIを非表示
+        document.getElementById('auth0-signin-btn').style.display = 'none';
+        document.getElementById('user-info').style.display = 'none';
+        
+        // 既存のメッセージを削除
+        this.hideLoginMessage();
+        
+        const approvalMessage = document.createElement('div');
+        approvalMessage.id = 'approval-message';
+        approvalMessage.className = 'approval-message';
+        approvalMessage.innerHTML = `
+            <div class="approval-content">
+                <h2>⏳ 承認待ち</h2>
+                <p>アカウントが作成されました。</p>
+                <p>管理者による承認をお待ちください。</p>
+                <div class="approval-info">
+                    <h3>📧 次のステップ</h3>
+                    <ul>
+                        <li>承認完了後、再度ログインしてご利用ください</li>
+                        <li>ご質問がある場合は管理者にお問い合わせください</li>
+                    </ul>
+                </div>
+                <button id="approval-logout-btn" class="btn btn-secondary" style="margin-top: 20px;">
+                    ログアウト
+                </button>
+            </div>
+        `;
+        
+        document.querySelector('.container').appendChild(approvalMessage);
+        
+        // ログアウトボタンのイベントリスナー
+        document.getElementById('approval-logout-btn').addEventListener('click', () => {
+            this.forceLogout();
+        });
+    }
+
+    async forceLogout() {
+        try {
+            this.isAuthenticated = false;
+            this.userInfo = null;
+            
+            // 承認待ちメッセージを削除
+            const approvalMessage = document.getElementById('approval-message');
+            if (approvalMessage) {
+                approvalMessage.remove();
+            }
+            
+            // ログイン画面を表示
+            this.showLoginScreen();
+        } catch (error) {
+            console.error('強制ログアウトエラー:', error);
         }
     }
 
