@@ -49,12 +49,14 @@ class AikidoExamApp {
                 this.setupModeSwitch();
                 this.showMainApp();
             } else {
-                // 未認証の場合はログイン画面を表示
+                // 未認証の場合は必ずログイン画面を表示
                 this.showLoginScreen();
             }
         } catch (error) {
             console.error('初期化エラー:', error);
-            this.showError('アプリケーションの初期化に失敗しました。');
+            // エラーの場合でもログイン画面を表示
+            this.showLoginScreen();
+            this.showError('アプリケーションの初期化に失敗しました。認証が必要です。');
         }
     }
 
@@ -110,9 +112,6 @@ class AikidoExamApp {
             if (typeof auth0 !== 'undefined') {
                 this.auth0 = await auth0.createAuth0Client(this.auth0Config);
                 
-                // ページ読み込み時にログイン状態をチェック
-                await this.checkAuthStatus();
-                
                 // サインインボタンの設定
                 const signInBtn = document.getElementById('auth0-signin-btn');
                 if (signInBtn) {
@@ -122,9 +121,13 @@ class AikidoExamApp {
                 }
             } else {
                 console.warn('Auth0ライブラリが読み込まれていません');
+                // Auth0が利用できない場合はアプリを利用不可にする
+                this.showError('認証システムが利用できません。');
+                throw new Error('Auth0ライブラリが読み込まれていません');
             }
         } catch (error) {
             console.error('Auth0初期化エラー:', error);
+            throw error;
         }
     }
 
@@ -148,13 +151,13 @@ class AikidoExamApp {
                     return false;
                 }
                 
-                // カスタム属性での承認状態チェック
-                const userApproved = user['https://aikido-app.com/approved'] || false;
-                if (!userApproved) {
-                    await this.logout();
-                    this.showApprovalPendingMessage();
-                    return false;
-                }
+                // カスタム属性での承認状態チェック（現在は無効化）
+                // const userApproved = user['https://aikido-app.com/approved'] || false;
+                // if (!userApproved) {
+                //     await this.logout();
+                //     this.showApprovalPendingMessage();
+                //     return false;
+                // }
                 
                 this.userInfo = {
                     email: user.email,
@@ -209,12 +212,8 @@ class AikidoExamApp {
         // メインコンテンツを非表示
         document.querySelector('main').style.display = 'none';
         
-        // ヘッダーのナビゲーションタブを非表示
-        document.querySelectorAll('.tab-button').forEach(tab => {
-            if (tab.id !== 'search-mode-tab') {
-                tab.style.display = 'none';
-            }
-        });
+        // タブコンテナを非表示
+        document.querySelector('.mode-tabs').style.display = 'none';
         
         // ログインボタンのみ表示
         document.getElementById('auth0-signin-btn').style.display = 'block';
@@ -227,6 +226,9 @@ class AikidoExamApp {
     showMainApp() {
         // メインコンテンツを表示
         document.querySelector('main').style.display = 'flex';
+        
+        // タブコンテナを表示
+        document.querySelector('.mode-tabs').style.display = 'flex';
         
         // 全てのタブを表示
         document.querySelectorAll('.tab-button').forEach(tab => {
