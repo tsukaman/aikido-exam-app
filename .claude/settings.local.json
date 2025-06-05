@@ -10,7 +10,11 @@
       "Bash(git remote add:*)",
       "Bash(git push:*)",
       "Bash(git add:*)",
-      "Bash(rg:*)"
+      "Bash(rg:*)",
+      "Bash(/Users/tsukaman/.claude/local/node_modules/@anthropic-ai/claude-code/vendor/ripgrep/arm64-darwin/rg -n \"指定技一覧|自由技一覧\" /Users/tsukaman/Documents/cursor/aikido-exam-app/data/aikido-ryu-exam-db.json)",
+      "Bash(/Users/tsukaman/.claude/local/node_modules/@anthropic-ai/claude-code/vendor/ripgrep/arm64-darwin/rg -C 2 \"指定技一覧\" /Users/tsukaman/Documents/cursor/aikido-exam-app/data/aikido-ryu-exam-db.json)",
+      "Bash(/Users/tsukaman/.claude/local/node_modules/@anthropic-ai/claude-code/vendor/ripgrep/arm64-darwin/rg \"指定技一覧|自由技一覧\" /Users/tsukaman/Documents/cursor/aikido-exam-app/data/aikido-ryu-exam-db.json)",
+      "Bash(node:*)"
     ],
     "deny": []
   }
