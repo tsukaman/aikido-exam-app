@@ -84,6 +84,16 @@ class AikidoExamApp {
         console.log(`総タグ数: ${this.allTags.size}`);
     }
 
+    populateExamCategories() {
+        // 審査区分データが存在することを確認
+        if (!this.data || !this.data.審査区分) {
+            console.error('審査区分データが見つかりません');
+            return;
+        }
+        
+        // すでにオプションが設定されているので、追加処理は不要
+    }
+
     showMainApp() {
         // メインコンテンツを表示
         document.querySelector('main').style.display = 'flex';
