@@ -1063,6 +1063,45 @@ footer p {
     .grade-selection {
         min-width: 100%;
     }
+    
+    /* 検索モードのリスト表示でもよみがなを非表示 */
+    .technique-list.list-view .technique-item .reading {
+        display: none;
+    }
+}
+
+/* 小さなスマホ画面用の追加調整 */
+@media (max-width: 480px) {
+    /* 審査支援モードで技名をより短く表示 */
+    .exam-technique-name {
+        font-size: 1rem;
+        line-height: 1.3;
+    }
+    
+    .exam-technique-description {
+        font-size: 0.8rem;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+    
+    /* 検索モードでも同様の調整 */
+    .technique-list.list-view .technique-item h3 {
+        font-size: 1rem;
+        min-width: 100px;
+    }
+    
+    .technique-list.list-view .technique-item .description {
+        font-size: 0.8rem;
+    }
+    
+    /* カテゴリタグも小さく */
+    .technique-list.list-view .technique-item .category-tag,
+    .exam-technique-categories .category-tag {
+        font-size: 0.65rem;
+        padding: 1px 4px;
+    }
 }
 
 /* アニメーション */
@@ -1415,6 +1454,11 @@ footer p {
     .exam-technique-reading {
         min-width: auto;
         width: 100%;
+    }
+    
+    /* モバイルでよみがなを非表示 */
+    .exam-technique-reading {
+        display: none;
     }
 }
 
