@@ -380,6 +380,11 @@ select:focus {
     display: block;
 }
 
+/* すべての画面サイズでリスト表示時は説明文を非表示 */
+.technique-list.list-view .technique-item .description {
+    display: none;
+}
+
 .technique-list.list-view .technique-item {
     display: flex;
     align-items: center;
@@ -1121,12 +1126,13 @@ footer p {
         min-width: 100%;
     }
     
-    /* 検索モードのリスト表示でもよみがなを非表示 */
-    .technique-list.list-view .technique-item .reading {
+    /* 検索モードのリスト表示でよみがなと説明文を非表示 */
+    .technique-list.list-view .technique-item .reading,
+    .technique-list.list-view .technique-item .description {
         display: none;
     }
     
-    /* 検索モードリスト表示の大幅最適化 */
+    /* 検索モードリスト表示の最適化 */
     .technique-list.list-view .technique-item {
         padding: 10px 15px;
         flex-direction: column;
@@ -1136,25 +1142,11 @@ footer p {
     
     .technique-list.list-view .technique-item h3 {
         margin: 0;
-        margin-bottom: 3px;
+        margin-bottom: 5px;
         font-size: 1rem;
         line-height: 1.2;
         min-width: auto;
         width: 100%;
-    }
-    
-    .technique-list.list-view .technique-item .description {
-        margin: 0;
-        font-size: 0.85rem;
-        color: #6c757d;
-        line-height: 1.3;
-        width: 100%;
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-        white-space: normal;
-        text-overflow: initial;
     }
     
     .technique-list.list-view .technique-item .categories {
@@ -1204,11 +1196,6 @@ footer p {
         line-height: 1.1;
     }
     
-    .exam-technique-description {
-        font-size: 0.8rem;
-        -webkit-line-clamp: 1;
-    }
-    
     /* 検索モードでも同様の調整 */
     .technique-list.list-view .technique-item {
         padding: 8px 12px;
@@ -1220,11 +1207,6 @@ footer p {
         font-size: 0.95rem;
         line-height: 1.1;
         min-width: auto;
-    }
-    
-    .technique-list.list-view .technique-item .description {
-        font-size: 0.8rem;
-        -webkit-line-clamp: 1;
     }
     
     /* カテゴリタグをさらに小さく */
@@ -1600,20 +1582,10 @@ footer p {
         line-height: 1.2;
     }
     
-    /* モバイルでよみがなを非表示 */
-    .exam-technique-reading {
-        display: none;
-    }
-    
+    /* モバイルでよみがなと説明文を非表示 */
+    .exam-technique-reading,
     .exam-technique-description {
-        font-size: 0.85rem;
-        color: #6c757d;
-        line-height: 1.3;
-        margin-top: 3px;
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
+        display: none;
     }
     
     /* カテゴリタグを大幅に縮小 */
