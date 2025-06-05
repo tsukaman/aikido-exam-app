@@ -544,6 +544,61 @@ footer p {
     margin-top: 15px;
 }
 
+/* ログイン画面 */
+.login-message {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    margin: 20px 0;
+    text-align: center;
+}
+
+.login-content h2 {
+    color: #2c3e50;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.login-content p {
+    color: #495057;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.login-features {
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 25px;
+    margin-top: 30px;
+    text-align: left;
+}
+
+.login-features h3 {
+    color: #2c3e50;
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.login-features ul {
+    list-style: none;
+    padding: 0;
+}
+
+.login-features li {
+    color: #495057;
+    font-size: 1rem;
+    padding: 8px 0;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.login-features li:last-child {
+    border-bottom: none;
+}
+
 .btn-auth {
     background: linear-gradient(45deg, #4285f4, #34a853);
     color: white;

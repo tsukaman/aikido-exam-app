@@ -33,13 +33,25 @@ class AikidoExamApp {
 
     async init() {
         try {
-            await this.loadData();
-            this.extractAllTechniques();
-            this.extractAllTags();
-            this.setupEventListeners();
-            this.populateExamCategories();
-            this.setupModeSwitch();
-            this.initializeAuth0();
+            // まずAuth0を初期化
+            await this.initializeAuth0();
+            
+            // ログイン状態をチェック
+            const isAuthenticated = await this.checkAuthenticationRequired();
+            
+            if (isAuthenticated) {
+                // 認証済みの場合のみアプリを初期化
+                await this.loadData();
+                this.extractAllTechniques();
+                this.extractAllTags();
+                this.setupEventListeners();
+                this.populateExamCategories();
+                this.setupModeSwitch();
+                this.showMainApp();
+            } else {
+                // 未認証の場合はログイン画面を表示
+                this.showLoginScreen();
+            }
         } catch (error) {
             console.error('初期化エラー:', error);
             this.showError('アプリケーションの初期化に失敗しました。');
@@ -116,7 +128,7 @@ class AikidoExamApp {
         }
     }
 
-    async checkAuthStatus() {
+    async checkAuthenticationRequired() {
         try {
             // URLにコールバックが含まれている場合の処理
             if (window.location.search.includes('code=') || window.location.search.includes('error=')) {
@@ -135,11 +147,18 @@ class AikidoExamApp {
                 };
                 this.isAuthenticated = true;
                 this.updateAuthUI();
-                this.showAdminMode();
+                return true;
             }
+            return false;
         } catch (error) {
             console.error('認証状態チェックエラー:', error);
+            return false;
         }
+    }
+
+    async checkAuthStatus() {
+        // 後方互換性のため残す
+        return await this.checkAuthenticationRequired();
     }
 
     async login() {
@@ -169,11 +188,76 @@ class AikidoExamApp {
         }
     }
 
+    showLoginScreen() {
+        // メインコンテンツを非表示
+        document.querySelector('main').style.display = 'none';
+        
+        // ヘッダーのナビゲーションタブを非表示
+        document.querySelectorAll('.tab-button').forEach(tab => {
+            if (tab.id !== 'search-mode-tab') {
+                tab.style.display = 'none';
+            }
+        });
+        
+        // ログインボタンのみ表示
+        document.getElementById('auth0-signin-btn').style.display = 'block';
+        document.getElementById('user-info').style.display = 'none';
+        
+        // ログイン促進メッセージを表示
+        this.showLoginMessage();
+    }
+
+    showMainApp() {
+        // メインコンテンツを表示
+        document.querySelector('main').style.display = 'flex';
+        
+        // 全てのタブを表示
+        document.querySelectorAll('.tab-button').forEach(tab => {
+            tab.style.display = 'block';
+        });
+        
+        // ログインメッセージを非表示
+        this.hideLoginMessage();
+    }
+
+    showLoginMessage() {
+        const loginMessage = document.createElement('div');
+        loginMessage.id = 'login-message';
+        loginMessage.className = 'login-message';
+        loginMessage.innerHTML = `
+            <div class="login-content">
+                <h2>🥋 合気道審査支援アプリへようこそ</h2>
+                <p>このアプリを利用するには、ログインが必要です。</p>
+                <p>アカウントをお持ちでない場合は、ログインボタンから新規登録できます。</p>
+                <div class="login-features">
+                    <h3>✨ 主な機能</h3>
+                    <ul>
+                        <li>📚 技検索・詳細表示</li>
+                        <li>🎯 審査支援・ランダム選択</li>
+                        <li>🔊 音声読み上げ機能</li>
+                        <li>⚙️ データ管理（管理者）</li>
+                    </ul>
+                </div>
+            </div>
+        `;
+        
+        document.querySelector('.container').appendChild(loginMessage);
+    }
+
+    hideLoginMessage() {
+        const loginMessage = document.getElementById('login-message');
+        if (loginMessage) {
+            loginMessage.remove();
+        }
+    }
+
     showAdminMode() {
-        // 管理者モードに自動切替
-        this.switchMode('admin');
-        this.loadAdminTechniques();
-        this.loadTagManagement();
+        // 管理者モードに自動切替（認証済みユーザーのみ）
+        if (this.isAuthenticated) {
+            this.switchMode('admin');
+            this.loadAdminTechniques();
+            this.loadTagManagement();
+        }
     }
 
     async logout() {
@@ -181,14 +265,14 @@ class AikidoExamApp {
             if (this.auth0) {
                 await this.auth0.logout({
                     logoutParams: {
-                        returnTo: window.location.origin
+                        returnTo: window.location.origin + window.location.pathname
                     }
                 });
             }
             this.isAuthenticated = false;
             this.userInfo = null;
             this.updateAuthUI();
-            this.switchMode('search');
+            this.showLoginScreen(); // ログアウト後はログイン画面を表示
         } catch (error) {
             console.error('ログアウトエラー:', error);
             this.showError('ログアウトに失敗しました。');
