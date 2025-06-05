@@ -33,13 +33,18 @@ class AikidoExamApp {
 
     async init() {
         try {
+            console.log('アプリ初期化開始...');
+            
             // まずAuth0を初期化
             await this.initializeAuth0();
+            console.log('Auth0初期化完了');
             
             // ログイン状態をチェック
             const isAuthenticated = await this.checkAuthenticationRequired();
+            console.log('最終認証結果:', isAuthenticated);
             
             if (isAuthenticated) {
+                console.log('認証済み - アプリ初期化開始');
                 // 認証済みの場合のみアプリを初期化
                 await this.loadData();
                 this.extractAllTechniques();
@@ -48,7 +53,9 @@ class AikidoExamApp {
                 this.populateExamCategories();
                 this.setupModeSwitch();
                 this.showMainApp();
+                console.log('アプリ初期化完了');
             } else {
+                console.log('未認証 - ログイン画面表示');
                 // 未認証の場合は必ずログイン画面を表示
                 this.showLoginScreen();
             }
@@ -133,19 +140,32 @@ class AikidoExamApp {
 
     async checkAuthenticationRequired() {
         try {
+            console.log('認証チェック開始...');
+            
             // URLにコールバックが含まれている場合の処理
             if (window.location.search.includes('code=') || window.location.search.includes('error=')) {
-                await this.auth0.handleRedirectCallback();
-                window.history.replaceState({}, document.title, window.location.pathname);
+                console.log('コールバック処理中...');
+                try {
+                    await this.auth0.handleRedirectCallback();
+                    console.log('コールバック処理完了');
+                    window.history.replaceState({}, document.title, window.location.pathname);
+                } catch (callbackError) {
+                    console.error('コールバック処理エラー:', callbackError);
+                    // コールバックエラーの場合でも認証状態をチェック
+                }
             }
 
             // ログイン状態をチェック
             const isAuthenticated = await this.auth0.isAuthenticated();
+            console.log('認証状態:', isAuthenticated);
+            
             if (isAuthenticated) {
                 const user = await this.auth0.getUser();
+                console.log('ユーザー情報:', user);
                 
                 // ユーザーがブロックされていないかチェック
                 if (user.blocked) {
+                    console.log('ユーザーがブロックされています');
                     await this.logout();
                     this.showError('アカウントが無効化されています。管理者にお問い合わせください。');
                     return false;
@@ -167,8 +187,10 @@ class AikidoExamApp {
                 };
                 this.isAuthenticated = true;
                 this.updateAuthUI();
+                console.log('認証成功、アプリ表示へ');
                 return true;
             }
+            console.log('認証されていません');
             return false;
         } catch (error) {
             console.error('認証状態チェックエラー:', error);
@@ -183,6 +205,7 @@ class AikidoExamApp {
 
     async login() {
         try {
+            console.log('ログイン開始...');
             await this.auth0.loginWithRedirect();
         } catch (error) {
             console.error('ログインエラー:', error);
