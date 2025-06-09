@@ -728,13 +728,21 @@ class AikidoExamApp {
         // 選択された審査区分の級・段を取得
         const examData = this.data.審査区分[examCategory];
         if (examData) {
-            Object.keys(examData).forEach(grade => {
+            const grades = Object.keys(examData);
+            grades.forEach(grade => {
                 const option = document.createElement('option');
                 option.value = grade;
                 option.textContent = grade;
                 gradeSelect.appendChild(option);
             });
             gradeSelection.style.display = 'block';
+            
+            // 昇段審査の場合、初段しかないので自動選択
+            if (examCategory === '昇段審査' && grades.length === 1 && grades[0] === '初段') {
+                gradeSelect.value = '初段';
+                // 自動的にonGradeChangeを呼び出す
+                this.onGradeChange();
+            }
         }
 
         techniqueSection.style.display = 'none';
