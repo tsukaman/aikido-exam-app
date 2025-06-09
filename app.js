@@ -32,20 +32,23 @@ class AikidoExamApp {
             
             // 同意済みの場合はアプリを初期化
             this.hideLandingPage();
-            
-            // データ読み込みとアプリ初期化
-            await this.loadData();
-            this.extractAllTechniques();
-            this.extractAllTags();
-            this.setupEventListeners();
-            this.populateExamCategories();
-            this.setupModeSwitch();
-            this.showMainApp();
-            console.log('アプリ初期化完了');
+            await this.initializeApp();
         } catch (error) {
             console.error('初期化エラー:', error);
             this.showError('アプリケーションの初期化に失敗しました。');
         }
+    }
+    
+    async initializeApp() {
+        // データ読み込みとアプリ初期化
+        await this.loadData();
+        this.extractAllTechniques();
+        this.extractAllTags();
+        this.setupEventListeners();
+        this.populateExamCategories();
+        this.setupModeSwitch();
+        this.showMainApp();
+        console.log('アプリ初期化完了');
     }
     
     checkAgreement() {
@@ -66,13 +69,13 @@ class AikidoExamApp {
             enterBtn.disabled = !e.target.checked;
         });
         
-        enterBtn.addEventListener('click', () => {
+        enterBtn.addEventListener('click', async () => {
             if (checkbox.checked) {
                 // 同意状態を保存
                 sessionStorage.setItem('aikido-app-agreed', 'true');
-                // アプリを再初期化
+                // ランディングページを非表示にしてアプリを初期化
                 this.hideLandingPage();
-                this.init();
+                await this.initializeApp();
             }
         });
     }
