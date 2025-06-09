@@ -5,7 +5,7 @@ class AikidoExamApp {
         this.speechSynthesis = window.speechSynthesis;
         this.currentUtterance = null;
         this.isLoading = false;
-        this.currentMode = 'search'; // 'search', 'exam'
+        this.currentMode = 'exam'; // 'search', 'exam' - 初期表示は審査支援
         this.allTechniques = []; // 全技術データを格納
         this.currentEditingTechnique = null;
         this.allTags = new Set(); // 全タグを格納
