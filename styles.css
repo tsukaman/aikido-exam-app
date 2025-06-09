@@ -1769,3 +1769,159 @@ footer p {
     color: #b45309;
     font-size: 1rem;
 }
+
+/* ランディングページ */
+.landing-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    padding: 20px;
+}
+
+.landing-container {
+    max-width: 800px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.landing-container h1 {
+    text-align: center;
+    color: #1a237e;
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+.warning-box {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+.warning-box h2 {
+    background: #ff6b6b;
+    color: white;
+    padding: 20px;
+    margin: 0;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.warning-content {
+    padding: 30px;
+}
+
+.warning-content h3 {
+    color: #c92a2a;
+    font-size: 1.2rem;
+    margin-top: 25px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #ffe3e3;
+    padding-bottom: 10px;
+}
+
+.warning-content h3:first-child {
+    margin-top: 0;
+}
+
+.warning-content p {
+    color: #495057;
+    line-height: 1.8;
+    margin: 15px 0;
+}
+
+.warning-content ul {
+    margin: 15px 0;
+    padding-left: 25px;
+}
+
+.warning-content li {
+    color: #495057;
+    line-height: 1.8;
+    margin-bottom: 10px;
+}
+
+.warning-content strong {
+    color: #c92a2a;
+    font-weight: 600;
+}
+
+.disclaimer-text {
+    background: #fff5f5;
+    border: 2px solid #ffe3e3;
+    border-radius: 8px;
+    padding: 20px;
+    color: #c92a2a;
+    font-weight: 500;
+    margin: 20px 0;
+}
+
+.agreement-section {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 2px solid #e9ecef;
+    text-align: center;
+}
+
+.checkbox-container {
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: 20px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    color: #212529;
+}
+
+.checkbox-container input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.checkbox-container span {
+    user-select: none;
+}
+
+#enter-app-btn {
+    background: linear-gradient(45deg, #1976d2, #1565c0);
+    color: white;
+    border: none;
+    padding: 15px 40px;
+    font-size: 1.1rem;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(25, 118, 210, 0.3);
+}
+
+#enter-app-btn:disabled {
+    background: #e0e0e0;
+    color: #9e9e9e;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+#enter-app-btn:not(:disabled):hover {
+    background: linear-gradient(45deg, #1565c0, #0d47a1);
+    box-shadow: 0 6px 20px rgba(25, 118, 210, 0.4);
+    transform: translateY(-2px);
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    .landing-container h1 {
+        font-size: 2rem;
+    }
+    
+    .warning-content {
+        padding: 20px;
+    }
+    
+    .warning-content h3 {
+        font-size: 1.1rem;
+    }
+}

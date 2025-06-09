@@ -8,7 +8,52 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
+    <!-- ランディングページ（注意事項） -->
+    <div id="landing-page" class="landing-page">
+        <div class="landing-container">
+            <h1>合気道審査支援アプリ</h1>
+            <div class="warning-box">
+                <h2>⚠️ 重要なお知らせ</h2>
+                <div class="warning-content">
+                    <h3>開発中のアプリケーションについて</h3>
+                    <p>このアプリケーションは現在開発中です。以下の点にご注意ください：</p>
+                    <ul>
+                        <li>表示される審査内容や技術情報は<strong>正確でない場合</strong>があります</li>
+                        <li>データは予告なく変更される可能性があります</li>
+                        <li>一部の機能が正常に動作しない場合があります</li>
+                    </ul>
+                    
+                    <h3>審査について</h3>
+                    <p>実際の審査においては：</p>
+                    <ul>
+                        <li>必ず<strong>指導者の指示</strong>に従ってください</li>
+                        <li>本アプリの情報のみに頼らないでください</li>
+                        <li>道場の正式な審査要項を優先してください</li>
+                    </ul>
+                    
+                    <h3>免責事項</h3>
+                    <p class="disclaimer-text">
+                        本アプリケーションの利用により生じたいかなる損害・不利益について、
+                        開発者および関係者は一切の責任を負いません。
+                        利用者ご自身の責任においてご利用ください。
+                    </p>
+                    
+                    <div class="agreement-section">
+                        <label class="checkbox-container">
+                            <input type="checkbox" id="agree-checkbox">
+                            <span>上記の内容を理解し、同意します</span>
+                        </label>
+                        <button id="enter-app-btn" class="btn btn-primary" disabled>
+                            アプリを利用する
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- メインアプリケーション -->
+    <div class="container" style="display: none;">
         <header>
             <h1>合気道審査支援アプリ</h1>
             
