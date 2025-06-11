@@ -789,9 +789,12 @@ class AikidoExamApp {
             
             // 昇段審査の場合は初段を自動選択
             if (examCategory === '昇段審査' && grades.includes('初段')) {
+                console.log('昇段審査 - 初段を自動選択します');
                 gradeSelect.value = '初段';
                 // 級・段選択のイベントを手動で発火
-                this.onGradeChange();
+                setTimeout(() => {
+                    this.onGradeChange();
+                }, 100);
             } else {
                 // 昇段審査以外の場合のみ技術セクションを非表示にする
                 console.log('技術セクションを非表示にします');
@@ -815,7 +818,9 @@ class AikidoExamApp {
 
         if (!examCategory || !grade) {
             console.log('審査区分または級・段が選択されていません');
-            techniqueSection.style.display = 'none';
+            if (techniqueSection) {
+                techniqueSection.style.display = 'none';
+            }
             return;
         }
 
@@ -840,9 +845,13 @@ class AikidoExamApp {
             console.log('科目数:', this.currentExamData.科目.length);
             console.log('科目内容:', this.currentExamData.科目);
             
-            console.log('techniqueSection表示前:', techniqueSection.style.display);
-            techniqueSection.style.display = 'block';
-            console.log('techniqueSection表示後:', techniqueSection.style.display);
+            if (techniqueSection) {
+                console.log('techniqueSection表示前:', techniqueSection.style.display);
+                techniqueSection.style.display = 'block';
+                console.log('techniqueSection表示後:', techniqueSection.style.display);
+            } else {
+                console.error('techniqueSection要素が見つかりません');
+            }
             
             this.clearTechniqueDisplay();
             this.updateDesignatedTechniqueButton();
@@ -857,7 +866,9 @@ class AikidoExamApp {
             if (this.currentExamData) {
                 console.log('科目プロパティ:', Object.keys(this.currentExamData));
             }
-            techniqueSection.style.display = 'none';
+            if (techniqueSection) {
+                techniqueSection.style.display = 'none';
+            }
         }
         console.log('=== onGradeChange 終了 ===');
     }
