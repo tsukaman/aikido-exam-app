@@ -48,7 +48,10 @@ class AikidoExamApp {
         this.populateExamCategories();
         this.setupModeSwitch();
         this.showMainApp();
-        console.log('アプリ初期化完了');
+        
+        // 初期表示を審査支援モードに設定
+        this.switchMode('exam');
+        console.log('アプリ初期化完了 - 審査支援モードで開始');
     }
     
     checkAgreement() {
@@ -302,10 +305,17 @@ class AikidoExamApp {
                     // 技IDがある場合は詳細表示
                     this.showTechniqueDetail(techniqueId);
                 } else {
-                    // 技IDがない場合（指定技や自由技など）は音声読み上げ
+                    // 技IDがない場合（指定技や自由技など）
                     const techniqueName = examTechniqueItem.querySelector('.exam-technique-name').textContent;
                     const reading = examTechniqueItem.querySelector('.exam-technique-reading').textContent;
-                    this.speakTechnique(techniqueName, reading);
+                    
+                    if (techniqueName === '指定技') {
+                        // 指定技の場合は指定技リストを表示
+                        this.showDesignatedTechniques();
+                    } else {
+                        // その他の場合は音声読み上げ
+                        this.speakTechnique(techniqueName, reading);
+                    }
                 }
             }
         });
@@ -711,12 +721,17 @@ class AikidoExamApp {
     }
 
     onExamCategoryChange() {
+        console.log('=== onExamCategoryChange 開始 ===');
         const examCategory = document.getElementById('exam-category').value;
         const gradeSelection = document.getElementById('grade-selection');
         const gradeSelect = document.getElementById('grade');
         const techniqueSection = document.getElementById('technique-section');
 
+        console.log('選択された審査区分:', examCategory);
+        console.log('データの審査区分:', this.data ? Object.keys(this.data.審査区分) : 'データなし');
+
         if (!examCategory) {
+            console.log('審査区分が選択されていません');
             gradeSelection.style.display = 'none';
             techniqueSection.style.display = 'none';
             return;
@@ -727,8 +742,12 @@ class AikidoExamApp {
 
         // 選択された審査区分の級・段を取得
         const examData = this.data.審査区分[examCategory];
+        console.log('取得した審査データ:', examData);
+        
         if (examData) {
             const grades = Object.keys(examData);
+            console.log('利用可能な級・段:', grades);
+            
             grades.forEach(grade => {
                 const option = document.createElement('option');
                 option.value = grade;
@@ -737,62 +756,129 @@ class AikidoExamApp {
             });
             gradeSelection.style.display = 'block';
             
-            // 昇段審査の場合、初段しかないので自動選択
-            if (examCategory === '昇段審査' && grades.length === 1 && grades[0] === '初段') {
-                gradeSelect.value = '初段';
-                // 自動的にonGradeChangeを呼び出す
-                this.onGradeChange();
-            }
+        } else {
+            console.log('審査データが見つかりません');
         }
 
+        // 技術セクションを非表示にする
+        console.log('技術セクションを非表示にします');
         techniqueSection.style.display = 'none';
+        console.log('=== onExamCategoryChange 終了 ===');
     }
 
     onGradeChange() {
+        console.log('=== onGradeChange 開始 ===');
         const examCategory = document.getElementById('exam-category').value;
         const grade = document.getElementById('grade').value;
         const techniqueSection = document.getElementById('technique-section');
 
+        console.log('onGradeChange called:', { examCategory, grade });
+        console.log('techniqueSection要素:', techniqueSection);
+
         if (!examCategory || !grade) {
+            console.log('審査区分または級・段が選択されていません');
             techniqueSection.style.display = 'none';
             return;
         }
 
         // 選択された級・段の審査データを取得
+        console.log('審査データ取得中:', examCategory, grade);
+        console.log('this.data.審査区分[examCategory]:', this.data.審査区分[examCategory]);
+        
         this.currentExamData = this.data.審査区分[examCategory][grade];
         
+        console.log('currentExamData:', this.currentExamData);
+        console.log('科目データ:', this.currentExamData ? this.currentExamData.科目 : 'なし');
+        console.log('指定技データ:', this.currentExamData ? this.currentExamData.指定技 : 'なし');
+        
+        // 指定技が科目に含まれているかチェック
         if (this.currentExamData && this.currentExamData.科目) {
+            const hasDesignatedTechnique = this.currentExamData.科目.includes('指定技');
+            console.log('科目に「指定技」が含まれているか:', hasDesignatedTechnique);
+        }
+        
+        if (this.currentExamData && this.currentExamData.科目) {
+            console.log('=== 技リストを表示開始 ===');
+            console.log('科目数:', this.currentExamData.科目.length);
+            console.log('科目内容:', this.currentExamData.科目);
+            
+            console.log('techniqueSection表示前:', techniqueSection.style.display);
             techniqueSection.style.display = 'block';
+            console.log('techniqueSection表示後:', techniqueSection.style.display);
+            
             this.clearTechniqueDisplay();
             this.updateDesignatedTechniqueButton();
-            // 自動で技リストを表示
+            
+            console.log('showAllTechniques呼び出し開始');
             this.showAllTechniques();
+            console.log('showAllTechniques呼び出し完了');
+        } else {
+            console.log('審査データまたは科目データが見つかりません');
+            console.log('this.currentExamData:', this.currentExamData);
+            if (this.currentExamData) {
+                console.log('科目プロパティ:', Object.keys(this.currentExamData));
+            }
+            techniqueSection.style.display = 'none';
         }
+        console.log('=== onGradeChange 終了 ===');
     }
 
     showAllTechniques() {
+        console.log('=== showAllTechniques 開始 ===');
+        console.log('currentExamData:', this.currentExamData);
+        
         if (!this.currentExamData || !this.currentExamData.科目) {
+            console.error('審査科目データが見つかりません', this.currentExamData);
             this.showError('審査科目データが見つかりません。');
             return;
         }
 
+        console.log('科目データ:', this.currentExamData.科目);
+
         const techniqueList = document.getElementById('technique-list');
         const randomTechnique = document.getElementById('random-technique');
         
+        console.log('technique-list要素:', techniqueList);
+        console.log('random-technique要素:', randomTechnique);
+        
+        if (!techniqueList) {
+            console.error('technique-list要素が見つかりません');
+            console.error('DOM要素の確認:', {
+                'technique-section': document.getElementById('technique-section'),
+                'technique-list': document.getElementById('technique-list'),
+                'exam-category': document.getElementById('exam-category'),
+                'grade': document.getElementById('grade')
+            });
+            return;
+        }
+        
         randomTechnique.style.display = 'none';
         techniqueList.innerHTML = '';
+        console.log('techniqueListをクリアしました');
 
         // 補足情報を表示
+        console.log('補足情報を表示中');
         this.displaySupplementaryInfo();
 
         // 審査支援ではリスト表示用のクラスを適用
         techniqueList.className = 'exam-technique-list';
+        console.log('クラス名を設定:', techniqueList.className);
+
+        console.log('技の表示を開始:', this.currentExamData.科目.length, '件');
 
         // JSONデータの順番通りに技を表示（指定技や自由技も含む）
-        this.currentExamData.科目.forEach((item) => {
+        this.currentExamData.科目.forEach((item, index) => {
+            console.log(`技 ${index + 1} 作成中:`, item);
             const techniqueElement = this.createExamTechniqueElement(item);
+            console.log(`技 ${index + 1} 要素:`, techniqueElement);
             techniqueList.appendChild(techniqueElement);
+            console.log(`技 ${index + 1} 追加完了`);
         });
+        
+        console.log('技の表示完了');
+        console.log('最終的なtechniqueList.children.length:', techniqueList.children.length);
+        console.log('最終的なtechniqueList.innerHTML:', techniqueList.innerHTML.substring(0, 200) + '...');
+        console.log('=== showAllTechniques 終了 ===');
     }
 
     displaySupplementaryInfo() {
@@ -917,24 +1003,23 @@ class AikidoExamApp {
     }
 
     getDesignatedTechniques() {
-        if (!this.currentExamData || !this.currentExamData.指定技範囲) {
+        if (!this.currentExamData || !this.currentExamData.指定技) {
             return [];
         }
 
         const designatedTechniques = [];
-        const designatedRange = this.currentExamData.指定技範囲;
+        const designatedList = this.currentExamData.指定技;
 
-        if (Array.isArray(designatedRange)) {
-            // 指定技範囲が配列の場合（例: ["waza_001-waza_002", "waza_005-waza_006"]）
-            designatedRange.forEach(range => {
-                const techniques = this.parseTechniqueRange(range);
-                designatedTechniques.push(...techniques);
+        if (Array.isArray(designatedList)) {
+            // 指定技が配列の場合（技IDのリスト）
+            designatedList.forEach(techniqueId => {
+                const technique = this.allTechniques.find(t => t.id === techniqueId);
+                if (technique) {
+                    designatedTechniques.push(technique);
+                } else {
+                    console.warn(`指定技 "${techniqueId}" が見つかりません`);
+                }
             });
-        } else if (typeof designatedRange === 'string') {
-            // 指定技範囲が文字列の場合（説明文など）
-            // この場合は有段審査の指定技リストを使用
-            const danGradeDesignatedTechniques = this.getDanGradeDesignatedTechniques();
-            designatedTechniques.push(...danGradeDesignatedTechniques);
         }
 
         return designatedTechniques;
@@ -1016,8 +1101,8 @@ class AikidoExamApp {
         const randomSelectBtn = document.getElementById('random-select-btn');
         const sequentialReadingBtn = document.getElementById('sequential-reading-btn');
         
-        // 指定技範囲が設定されているかチェック
-        if (this.currentExamData && this.currentExamData.指定技範囲) {
+        // 指定技が設定されているかチェック
+        if (this.currentExamData && this.currentExamData.指定技) {
             // 指定技の数を計算
             const designatedTechniques = this.getDesignatedTechniques();
             const existingTechniqueIds = this.currentExamData.科目 || [];
