@@ -202,39 +202,55 @@ class AikidoExamApp {
         const sequentialReadingBtn = document.getElementById('sequential-reading-btn');
         const stopSpeechBtn = document.getElementById('stop-speech-btn');
 
-        examCategorySelect.addEventListener('change', () => {
-            this.onExamCategoryChange();
-        });
+        if (examCategorySelect) {
+            examCategorySelect.addEventListener('change', () => {
+                this.onExamCategoryChange();
+            });
+        }
 
-        gradeSelect.addEventListener('change', () => {
-            this.onGradeChange();
-        });
+        if (gradeSelect) {
+            gradeSelect.addEventListener('change', () => {
+                this.onGradeChange();
+            });
+        }
 
-        showAllSubjectsBtn.addEventListener('click', () => {
-            this.showAllTechniques();
-            this.updateButtonVisibility(false);
-        });
+        if (showAllSubjectsBtn) {
+            showAllSubjectsBtn.addEventListener('click', () => {
+                this.showAllTechniques();
+                this.updateButtonVisibility(false);
+            });
+        }
 
-        showDesignatedBtn.addEventListener('click', () => {
-            this.showDesignatedTechniques();
-            this.updateButtonVisibility(true);
-        });
+        if (showDesignatedBtn) {
+            showDesignatedBtn.addEventListener('click', () => {
+                this.showDesignatedTechniques();
+                this.updateButtonVisibility(true);
+            });
+        }
 
-        randomSelectBtn.addEventListener('click', () => {
-            this.selectRandomTechnique();
-        });
+        if (randomSelectBtn) {
+            randomSelectBtn.addEventListener('click', () => {
+                this.selectRandomTechnique();
+            });
+        }
 
-        randomDesignatedBtn.addEventListener('click', () => {
-            this.selectRandomDesignatedTechnique();
-        });
+        if (randomDesignatedBtn) {
+            randomDesignatedBtn.addEventListener('click', () => {
+                this.selectRandomDesignatedTechnique();
+            });
+        }
 
-        sequentialReadingBtn.addEventListener('click', () => {
-            this.startSequentialReading();
-        });
+        if (sequentialReadingBtn) {
+            sequentialReadingBtn.addEventListener('click', () => {
+                this.startSequentialReading();
+            });
+        }
 
-        stopSpeechBtn.addEventListener('click', () => {
-            this.stopSpeech();
-        });
+        if (stopSpeechBtn) {
+            stopSpeechBtn.addEventListener('click', () => {
+                this.stopSpeech();
+            });
+        }
 
         // 検索モードのイベントリスナー
         const searchBtn = document.getElementById('search-btn');
@@ -242,24 +258,32 @@ class AikidoExamApp {
         const showAllTechniquesBtn = document.getElementById('show-all-techniques-btn');
         const searchText = document.getElementById('search-text');
 
-        searchBtn.addEventListener('click', () => {
-            this.performSearch();
-        });
+        if (searchBtn) {
+            searchBtn.addEventListener('click', () => {
+                this.performSearch();
+            });
+        }
 
-        clearSearchBtn.addEventListener('click', () => {
-            this.clearSearch();
-        });
+        if (clearSearchBtn) {
+            clearSearchBtn.addEventListener('click', () => {
+                this.clearSearch();
+            });
+        }
 
-        showAllTechniquesBtn.addEventListener('click', () => {
-            this.showAllTechniquesInSearch();
-        });
+        if (showAllTechniquesBtn) {
+            showAllTechniquesBtn.addEventListener('click', () => {
+                this.showAllTechniquesInSearch();
+            });
+        }
 
         // キーワード検索でEnterキー押下時に検索実行
-        searchText.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                this.performSearch();
-            }
-        });
+        if (searchText) {
+            searchText.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    this.performSearch();
+                }
+            });
+        }
 
         // チェックボックスの変更でリアルタイム検索
         document.querySelectorAll('.category-filter, .attack-filter, .position-filter').forEach(checkbox => {
