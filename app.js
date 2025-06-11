@@ -195,6 +195,7 @@ class AikidoExamApp {
         // 審査支援モードのイベントリスナー
         const examCategorySelect = document.getElementById('exam-category');
         const gradeSelect = document.getElementById('grade');
+        const showAllSubjectsBtn = document.getElementById('show-all-subjects-btn');
         const showDesignatedBtn = document.getElementById('show-designated-btn');
         const randomSelectBtn = document.getElementById('random-select-btn');
         const randomDesignatedBtn = document.getElementById('random-designated-btn');
@@ -209,8 +210,14 @@ class AikidoExamApp {
             this.onGradeChange();
         });
 
+        showAllSubjectsBtn.addEventListener('click', () => {
+            this.showAllTechniques();
+            this.updateButtonVisibility(false);
+        });
+
         showDesignatedBtn.addEventListener('click', () => {
             this.showDesignatedTechniques();
+            this.updateButtonVisibility(true);
         });
 
         randomSelectBtn.addEventListener('click', () => {
@@ -309,7 +316,7 @@ class AikidoExamApp {
                     const techniqueName = examTechniqueItem.querySelector('.exam-technique-name').textContent;
                     const reading = examTechniqueItem.querySelector('.exam-technique-reading').textContent;
                     
-                    if (techniqueName === '指定技') {
+                    if (techniqueName === '指定技' || techniqueName.includes('指定技')) {
                         // 指定技の場合は指定技リストを表示
                         this.showDesignatedTechniques();
                     } else {
@@ -808,6 +815,7 @@ class AikidoExamApp {
             
             this.clearTechniqueDisplay();
             this.updateDesignatedTechniqueButton();
+            this.updateButtonVisibility(false);
             
             console.log('showAllTechniques呼び出し開始');
             this.showAllTechniques();
@@ -821,6 +829,29 @@ class AikidoExamApp {
             techniqueSection.style.display = 'none';
         }
         console.log('=== onGradeChange 終了 ===');
+    }
+
+    updateButtonVisibility(isDesignatedView) {
+        const showAllSubjectsBtn = document.getElementById('show-all-subjects-btn');
+        const showDesignatedBtn = document.getElementById('show-designated-btn');
+        const sequentialReadingBtn = document.getElementById('sequential-reading-btn');
+        
+        if (isDesignatedView) {
+            // 指定技表示中
+            showAllSubjectsBtn.style.display = 'inline-block';
+            showDesignatedBtn.style.display = 'none';
+            sequentialReadingBtn.style.display = 'none';
+        } else {
+            // 全科目表示中
+            showAllSubjectsBtn.style.display = 'none';
+            if (this.currentExamData && this.currentExamData.指定技) {
+                showDesignatedBtn.style.display = 'inline-block';
+                sequentialReadingBtn.style.display = 'none';
+            } else {
+                showDesignatedBtn.style.display = 'none';
+                sequentialReadingBtn.style.display = 'inline-block';
+            }
+        }
     }
 
     showAllTechniques() {
@@ -930,21 +961,10 @@ class AikidoExamApp {
             return;
         }
 
-        // 既存の審査科目に含まれている技を除外
-        const existingTechniqueIds = this.currentExamData.科目 || [];
-        const availableDesignatedTechniques = designatedTechniques.filter(technique => 
-            !existingTechniqueIds.includes(technique.id)
-        );
-
-        if (availableDesignatedTechniques.length === 0) {
-            techniqueList.innerHTML = '<p style="text-align: center; color: #6c757d; margin-top: 20px;">選択可能な指定技がありません（全て審査科目に含まれています）。</p>';
-            return;
-        }
-
-        // 指定技を表示（リスト形式）
+        // 指定技を表示（リスト形式）- フィルタリングを削除して全ての指定技を表示
         techniqueList.className = 'exam-technique-list';
         
-        availableDesignatedTechniques.forEach((technique) => {
+        designatedTechniques.forEach((technique) => {
             const techniqueElement = this.createExamTechniqueElement(technique.id);
             techniqueElement.classList.add('designated-technique');
             techniqueList.appendChild(techniqueElement);
@@ -984,19 +1004,9 @@ class AikidoExamApp {
             return;
         }
 
-        // 既存の審査科目に含まれている技を除外
-        const existingTechniqueIds = this.currentExamData.科目 || [];
-        const availableDesignatedTechniques = designatedTechniques.filter(technique => 
-            !existingTechniqueIds.includes(technique.id)
-        );
-
-        if (availableDesignatedTechniques.length === 0) {
-            this.showError('選択可能な指定技がありません（全て審査科目に含まれています）。');
-            return;
-        }
-
-        const randomIndex = Math.floor(Math.random() * availableDesignatedTechniques.length);
-        const selectedTechnique = availableDesignatedTechniques[randomIndex];
+        // フィルタリングを削除して全ての指定技からランダム選択
+        const randomIndex = Math.floor(Math.random() * designatedTechniques.length);
+        const selectedTechnique = designatedTechniques[randomIndex];
 
         this.displayRandomTechnique(selectedTechnique);
         this.speakTechnique(selectedTechnique.名前, selectedTechnique.よみがな);
@@ -1103,22 +1113,19 @@ class AikidoExamApp {
         
         // 指定技が設定されているかチェック
         if (this.currentExamData && this.currentExamData.指定技) {
-            // 指定技の数を計算
+            // 指定技の数を計算（フィルタリングなしで全件数を表示）
             const designatedTechniques = this.getDesignatedTechniques();
-            const existingTechniqueIds = this.currentExamData.科目 || [];
-            const availableCount = designatedTechniques.filter(technique => 
-                !existingTechniqueIds.includes(technique.id)
-            ).length;
+            const totalCount = designatedTechniques.length;
             
             // 指定技関連ボタンを表示
             if (randomDesignatedBtn) {
                 randomDesignatedBtn.style.display = 'inline-block';
-                randomDesignatedBtn.textContent = `指定技ランダム (${availableCount}件)`;
+                randomDesignatedBtn.textContent = `指定技ランダム (${totalCount}件)`;
             }
             
             if (showDesignatedBtn) {
                 showDesignatedBtn.style.display = 'inline-block';
-                showDesignatedBtn.textContent = `指定技のみ表示 (${availableCount}件)`;
+                showDesignatedBtn.textContent = `指定技のみ表示 (${totalCount}件)`;
             }
 
             // 通常のランダム選択ボタンを表示
