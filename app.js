@@ -787,13 +787,20 @@ class AikidoExamApp {
             });
             gradeSelection.style.display = 'block';
             
+            // 昇段審査の場合は初段を自動選択
+            if (examCategory === '昇段審査' && grades.includes('初段')) {
+                gradeSelect.value = '初段';
+                // 級・段選択のイベントを手動で発火
+                this.onGradeChange();
+            } else {
+                // 昇段審査以外の場合のみ技術セクションを非表示にする
+                console.log('技術セクションを非表示にします');
+                techniqueSection.style.display = 'none';
+            }
         } else {
             console.log('審査データが見つかりません');
+            techniqueSection.style.display = 'none';
         }
-
-        // 技術セクションを非表示にする
-        console.log('技術セクションを非表示にします');
-        techniqueSection.style.display = 'none';
         console.log('=== onExamCategoryChange 終了 ===');
     }
 
